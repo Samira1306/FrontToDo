@@ -1,0 +1,21 @@
+<div class="list-container">
+  <h1>Lista de Tareas</h1>
+  <div *ngIf="tasks.length === 0" class="empty-message">
+    No hay tareas disponibles.
+  </div>
+  <div *ngIf="tasks.length > 0" class="task-list">
+    <div *ngFor="let task of tasks" class="task-item" [ngClass]="{ 'disabled-task': task.statusTask === 1 }">
+      <div class="task-header">
+        <input type="checkbox" (change)="onCheckboxChange(task)" [checked]="task.statusTask === 1">
+        <h2>{{ task.title }}</h2>
+      </div>
+      <p><strong>Estado:</strong> {{ task.statusTask | statusTask }}</p>
+      <p><strong>Detalles:</strong> {{ task.detail}}</p>
+      <p><strong>Fecha de Expiración:</strong> {{ task.expirationDate | date }}</p>
+      <p><strong>Prioridad:</strong> {{ task.priority | priorityTask}}</p>
+    </div>
+  </div>
+  <button class="create-task-button" routerLink="/create" >Crear Tarea</button>
+</div>
+
+
